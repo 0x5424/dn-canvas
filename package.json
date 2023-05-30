@@ -1,15 +1,19 @@
 {
   "type": "module",
-  "name": "svlt",
-  "description": "bootstrap new svelte project with as few required dependencies",
+  "name": "dn-canvas",
   "scripts": {
     "start": "vite",
     "check": "svelte-check"
+  },
+  "dependencies": {
+    "draw-n": "github:0x5424/draw-n"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "latest",
     "svelte": "latest",
     "svelte-check": "latest",
     "vite": "latest"
-  }
+  },
+  "license": "ISC",
+  "author": "Trevor <trevor@osrs.tools>"
 }
