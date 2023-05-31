@@ -17,7 +17,14 @@
     --color-bg: 28 28 28;
     --color-accent: 28 28 28;
   }
+}
 
+@layer components {
+  input[type=text],
+  input[type=number],
+  textarea {
+    background-color: transparent;
+  }
 }
 
 @layer utilities {
