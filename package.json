@@ -10,8 +10,12 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "latest",
+    "@tailwindcss/forms": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
     "svelte": "latest",
     "svelte-check": "latest",
+    "tailwindcss": "latest",
     "vite": "latest"
   },
   "license": "ISC",
