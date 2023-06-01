@@ -9,7 +9,7 @@
   onMount(initializeActiveTheme)
 </script>
 
-<main class='h-full p-3 shadow-flat shadow-accent'>
+<main class='h-full p-3 shadow-flat shadow-fg'>
   <div class='h-full shadow-flat shadow-accent'>
     <div class='h-full flex flex-col md:flex-row'>
       <Controls />

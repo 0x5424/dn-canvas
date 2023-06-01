@@ -30,7 +30,7 @@
 @layer utilities {
   /* custom variant of normal `shadow` with 0 x/y offset */
   .shadow-flat {
-    box-shadow: inset 0 0 1.5px var(--tw-shadow-color);
+    box-shadow: inset 0 0 1.5px var(--shadow-spread-radius, 0) var(--tw-shadow-color);
   }
 }
 
