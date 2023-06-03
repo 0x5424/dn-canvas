@@ -32,6 +32,10 @@
   .shadow-flat {
     box-shadow: inset 0 0 1.5px var(--shadow-spread-radius, 0) var(--tw-shadow-color);
   }
+
+  .shadow-outset {
+    box-shadow: 0 0 1.5px var(--shadow-spread-radius, 0) var(--tw-shadow-color);
+  }
 }
 
 * {

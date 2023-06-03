@@ -2,16 +2,30 @@
   import { slide } from 'svelte/transition'
   import ToggleThemeButton from './components/ToggleThemeButton.svelte'
 
+  let dialog: HTMLDialogElement
+
   let xformModesOpen = false
   let colorsOpen = false
   let drawModesOpen = false
 </script>
 
-<div class='h-full flex flex-col justify-between'>
-  <section class='w-full py-1 px-2 flex flex-col'>
+<dialog class='backdrop:backdrop-blur-sm m-auto shadow-outset shadow-fg bg-bg text-fg' bind:this={dialog}>
+  <div>
+    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
+    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
+    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
+    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
+    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
+  </div>
+</dialog>
+<div class='h-full flex flex-col justify-between py-1 px-2'>
+  <section class='w-full flex flex-col z-10'>
     <menu class='flex justify-between'>
       <li class='my-auto'>
-        <button class='py-1 px-3 control-button'>
+        <button
+          class='py-1 px-3 control-button'
+          on:click={() => dialog.showModal()}
+        >
           M
         </button>
       </li>
@@ -23,6 +37,8 @@
           placeholder=X
           autocomplete=off
           spellcheck=false
+          step=1
+          inputmode=decimal
         />
         <input
           type=number
@@ -30,6 +46,8 @@
           placeholder=Y
           autocomplete=off
           spellcheck=false
+          step=1
+          inputmode=decimal
         />
       </li>
 
@@ -86,13 +104,13 @@
     </div>
   </section>
 
-  <section class='w-full py-1 px-2'>
+  <section class='w-full z-10'>
     <div class='flex justify-between items-end'>
       <div>
         {#if colorsOpen}
           <menu class='grid grid-cols-2' transition:slide={{ duration: 150 }}>
             <!-- N colors... 16 for initial draft -->
-            {#each ['rgba', 'rgba', 'rgba', 'rgba'].join('') as color}
+            {#each [...new Array(16)].map(() => 'rgb') as color}
               <li>
                 <button class='py-1 px-3 control-button'>{color}</button>
               </li>
@@ -176,5 +194,17 @@
   .control-input::-webkit-inner-spin-button,
   .control-input::-webkit-outer-spin-button {
     appearance: none;
+  }
+
+  dialog::backdrop {
+    /**
+     * GOTCHA: vars don't work on safari for dialog::backdrop
+     *
+     * background-color: rgb(var(--color-fg) / 0.25);
+     *
+     * but its ok cuz we want to use a darker backdrop color in all cases
+     */
+
+    background-color: rgb(28 28 28 / 0.25);
   }
 </style>
