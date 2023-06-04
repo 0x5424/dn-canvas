@@ -1,4 +1,6 @@
-<script lang="ts">
+<script lang=ts>
+  import { canvasWidth, canvasHeight } from './stores/canvas'
+
   let canvas: HTMLCanvasElement
 </script>
 
@@ -42,11 +44,13 @@
     <div class='flex flex-col'>
       <canvas
         class='mx-auto'
-        width=64
-        height=64
+        width={$canvasWidth}
+        height={$canvasHeight}
         bind:this={canvas}
       />
-      <small class='text-accent mx-auto' title='Canvas dimensions'>64 x 64</small>
+      <small class='opacity-50 mx-auto' title='Canvas dimensions'>
+        {$canvasWidth} x {$canvasHeight}
+      </small>
     </div>
   </section>
 </div>

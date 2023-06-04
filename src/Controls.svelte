@@ -1,6 +1,7 @@
 <script lang=ts>
   import { slide } from 'svelte/transition'
   import ToggleThemeButton from './components/ToggleThemeButton.svelte'
+  import Settings from './Settings.svelte'
 
   let dialog: HTMLDialogElement
 
@@ -10,13 +11,7 @@
 </script>
 
 <dialog class='backdrop:backdrop-blur-sm m-auto shadow-outset shadow-fg bg-bg text-fg' bind:this={dialog}>
-  <div>
-    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-    <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-  </div>
+  <Settings />
 </dialog>
 <div class='h-full flex flex-col justify-between py-1 px-2'>
   <section class='w-full flex flex-col z-10'>
