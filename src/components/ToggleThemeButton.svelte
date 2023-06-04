@@ -14,8 +14,8 @@
   onMount(() => {
     // do a pretty lil fade-out on mount
     setTimeout(() => beginFadeout = true, 200)
-    // sync hideb utton with css transition
-    setTimeout(() => hideToggleButton = true, 5000)
+    // sync hide button with css transition
+    setTimeout(() => hideToggleButton = true, 4800)
   })
 </script>
 
@@ -33,7 +33,7 @@
     {/if}
 </button>
 
-<style lang=postcss>
+<style>
   h1 {
     transition: opacity 5s ease-out;
   }

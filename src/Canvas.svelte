@@ -1,29 +1,58 @@
-<script lang=ts>
-  // foo
+<script lang="ts">
+  let canvas: HTMLCanvasElement
 </script>
 
-<div class='flex items-center h-full w-full absolute top-0'>
-  <section>
-    <span>Canvas</span>
+<div class='absolute inset-0 flex flex-col justify-evenly items-center'>
+  <!-- Auto scrolling, zoomed-in canvas preview. Follows cursor as it draws-->
+  <!-- todo: auto-set element width based on difference of current canvas height -->
+  <section class='max-h-full w-full'>
+    <div class='w-full'>
+      <canvas
+        class='mx-auto'
+        width=64
+        height=64
+      />
+    </div>
+    <div class='w-full'>
+      <canvas
+        class='mx-auto'
+        width=64
+        height=64
+      />
+    </div>
+    <div class='w-full'>
+      <canvas
+        class='mx-auto'
+        width=64
+        height=64
+      />
+    </div>
 
-    <label>
-      <input
-        type=number
-        autocomplete=off
-        spellcheck=false
-        placeholder=???
+    <div class='w-full'>
+      <canvas
+        class='mx-auto'
+        width=64
+        height=64
       />
-    </label>
-    <label>
-      <input
-        type=text
-        autocomplete=off
-        spellcheck=false
-        placeholder=???
+    </div>
+  </section>
+
+  <!-- Final product, small preview -->
+  <section class='-m-10'>
+    <div class='flex flex-col'>
+      <canvas
+        class='mx-auto'
+        width=64
+        height=64
+        bind:this={canvas}
       />
-    </label>
-    <label>
-      <textarea />
-    </label>
+      <small class='text-accent mx-auto' title='Canvas dimensions'>64 x 64</small>
+    </div>
   </section>
 </div>
+
+<style>
+  canvas {
+    outline: 0.1px solid;
+  }
+</style>
