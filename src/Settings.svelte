@@ -2,27 +2,46 @@
   import { canvasWidth, canvasHeight } from './stores/canvas'
 </script>
 
-<div>
-  <h3>Canvas size</h3>
-  <div class='grid grid-cols-5'>
-    <input
-      class='control-input col-span-2'
-      type=number
-      bind:value={$canvasWidth}
-    />
-    <span class=m-auto>x</span>
-    <input
-      class='control-input col-span-2'
-      type=number
-      bind:value={$canvasHeight}
-    />
+<div class='flex flex-col gap-1 max-w-md'>
+  <div class='flex flex-wrap gap-2 justify-center max-w-xs mx-auto'>
+    <h3 class='font-mono w-full'>Canvas size</h3>
+
+    <label class='font-mono w-16 text-center flex flex-col'>
+      <input
+        class='control-input py-0.5 max-w-full'
+        type=number
+        bind:value={$canvasWidth}
+      />
+      <small class='-m-0.5 text-fg/50'>width</small>
+    </label>
+
+    <span class='font-mono mx-1 my-auto'>x</span>
+
+    <label class='font-mono w-16 text-center flex flex-col'>
+      <input
+        class='control-input py-0.5 max-w-full'
+        type=number
+        bind:value={$canvasHeight}
+      />
+      <small class='-m-0.5 text-fg/50'>height</small>
+    </label>
   </div>
-  <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-  <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-  <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-  <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-  <p>many many many many many many na nfsd fsnf sdkj fnsdkjf nsdjkf nsdkjf nsdjkfn sdd </p>
-  <p>{$canvasWidth} x {$canvasHeight}</p>
+
+  <hr class='border-fg/20 my-1.5' />
+
+  <div class='flex flex-wrap gap-2 justify-center max-w-xs'>
+    <h3 class='w-full'>Export</h3>
+
+    <p>Export the current canvas. Choose an export format from: <code>binary</code>, <code>hex</code>, or <code>decimal</code>.</p>
+  </div>
+
+  <hr class='border-fg/20 my-1.5' />
+
+  <div class='flex flex-wrap gap-2 justify-center max-w-xs'>
+    <h3 class='font-mono w-full'>Import</h3>
+
+    <p>Import a new canvas from a number. (binary files not yet supported)</p>
+  </div>
 </div>
 
 <style lang=postcss>
@@ -39,7 +58,7 @@
   }
 
   .control-input {
-    @apply p-1 text-center text-ellipsis;
+    @apply text-center text-ellipsis;
   }
 
   .control-input:focus-within {
