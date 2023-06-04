@@ -1,5 +1,6 @@
 <script lang=ts>
   import { slide } from 'svelte/transition'
+  import { cursorX, cursorY } from './stores/canvas'
   import ToggleThemeButton from './components/ToggleThemeButton.svelte'
   import Settings from './Settings.svelte'
 
@@ -34,6 +35,7 @@
           spellcheck=false
           step=1
           inputmode=decimal
+          bind:value={$cursorX}
         />
         <input
           type=number
@@ -43,6 +45,7 @@
           spellcheck=false
           step=1
           inputmode=decimal
+          bind:value={$cursorY}
         />
       </li>
 

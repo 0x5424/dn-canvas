@@ -1,5 +1,5 @@
 <script lang=ts>
-  // export let onClick: () => void
+  // import { cursorX, cursorY } from './stores/canvas'
 </script>
 
 <button

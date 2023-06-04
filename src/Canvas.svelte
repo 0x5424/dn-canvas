@@ -1,7 +1,7 @@
 <script lang=ts>
   import { canvasWidth, canvasHeight } from './stores/canvas'
   import Cell from './Cell.svelte'
-    import { onMount } from 'svelte';
+  import { onMount } from 'svelte'
 
   let workareaReady = false
   let workareaWidth = 1
