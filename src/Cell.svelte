@@ -1,9 +1,9 @@
 <script lang=ts>
-  import { cursorIndex, cameraX, cameraY, workareaSize, canvasWidth } from './stores/canvas'
+  import { cursorIndex, cursorX, cursorY, cameraX, cameraY, workareaSize, canvasWidth, canvasHeight } from './stores/canvas'
 
   export let index: number
 
-  // x,y are reserved terms for cursor. 0-indexed
+  // cursor index mmust be calced using 0-indexed vals
   $: x = (index % $workareaSize) + $cameraX
   $: y = Math.floor(index / $workareaSize) + $cameraY
 
@@ -15,11 +15,13 @@
 </script>
 
 <button
-  class='cell-button relative before:bg-bg before:absolute before:inset-[0.5px]'
+  class='cell-button relative before:bg-bg before:absolute'
   class:current-position={$cursorIndex === effectivePosition}
-  class:bg-rose-600={col === 20}
-  class:bg-indigo-600={row === 7}
-  data-xd={index}
+  class:first-col={col === 1}
+  class:first-row={row === 1}
+  class:last-col={col === $canvasWidth}
+  class:last-row={row === $canvasHeight}
+  on:click={() => [$cursorX, $cursorY] = [col, row]}
 >
   <span class=sr-only>Click to select cell {row}, {col}</span>
 </button>
@@ -27,6 +29,7 @@
 <style lang=postcss>
   .cell-button::before {
     transition: background-color 0.1s;
+    inset: 0.5px;
   }
 
   .current-position::before {
@@ -38,4 +41,9 @@
     transition: box-shadow 0.125s;
     box-shadow: inset 0 0 1.5px 1.5px rgb(var(--color-fg) / 1);
   }
+
+  .first-col::before { left: 0; }
+  .first-row::before { top: 0; }
+  .last-col::before { right: 0; }
+  .last-row::before { bottom: 0; }
 </style>

@@ -14,10 +14,10 @@
 
 <div class='absolute inset-0 flex flex-col justify-evenly items-center'>
   <!-- Auto scrolling, zoomed-in canvas preview. Follows cursor as it draws-->
-  <section class='p-2 max-h-full w-full'>
+  <section class='p-2 mt-8 max-h-full w-full'>
     <div
       bind:clientWidth={$workareaWidth}
-      class='workarea-bg w-full max-w-md mx-auto'
+      class='workarea-bg w-full max-w-lg mx-auto'
       class:opacity-0={!workareaReady}
       class:opacity-100={workareaReady}
     >
@@ -69,9 +69,9 @@
     animation: workarea-pan 5s ease-in-out infinite;
     background: linear-gradient(
       to right,
-      rgb(var(--color-fg) / 0.5),
-      rgb(var(--color-bg) / 1),
-      rgb(var(--color-fg) / 0.5)
+      rgb(var(--color-fg) / 0.625),
+      rgb(var(--color-fg) / 0.375),
+      rgb(var(--color-fg) / 0.625)
     );
     background-size: 200%;
   }

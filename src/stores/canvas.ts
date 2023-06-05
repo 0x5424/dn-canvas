@@ -1,7 +1,7 @@
 import { get, writable, derived } from 'svelte/store'
 import { writableStorage } from '../lib/writableStorage'
 
-export const canvasWidth = writableStorage('canvas/width', 64)
+export const canvasWidth = writableStorage('canvas/width', 32)
 export const canvasHeight = writableStorage('canvas/height', get(canvasWidth))
 
 export const cursorX = writableStorage<void | number>('canvas/cursorX', null)
@@ -16,12 +16,15 @@ export const cursorIndex = derived([canvasWidth, cursorX, cursorY], ([$canvasWid
 
 export const workareaWidth = writable(1)
 
-/** Number of cells to show in the workarea */
-export const workareaSize = derived([canvasWidth, workareaWidth], ([$canvasWidth, $workareaWidth]) => {
+/** Number of cells to show in the workarea; todo support non-square aspect ratio */
+export const workareaSize = derived([canvasWidth, canvasHeight, workareaWidth], ([$canvasWidth, $canvasHeight, $workareaWidth]) => {
   const workarea = Math.round($workareaWidth / 22) // 22px per cell
 
-  // take lesser of these two (dont overextend actual canvas size)
-  return Math.min(workarea, $canvasWidth)
+  // Pick smallest side (dont overextend actual canvas size)
+  const lesser = Math.min($canvasWidth, $canvasHeight)
+
+  // then take lesser of these two again
+  return Math.min(workarea, lesser)
 })
 
 /** "camera" to offset the visible workarea */
