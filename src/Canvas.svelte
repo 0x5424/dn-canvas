@@ -1,13 +1,10 @@
 <script lang=ts>
-  import { canvasWidth, canvasHeight } from './stores/canvas'
+  import { workareaWidth, workareaSize, canvasWidth, canvasHeight } from './stores/canvas'
   import Cell from './Cell.svelte'
   import { onMount } from 'svelte'
 
   let workareaReady = false
-  let workareaWidth = 1
   let canvas: HTMLCanvasElement
-
-  $: workareaSize = Math.round(workareaWidth / 22)
 
   onMount(() => {
     // transition in nicely regardless of light/dark mode
@@ -19,17 +16,17 @@
   <!-- Auto scrolling, zoomed-in canvas preview. Follows cursor as it draws-->
   <section class='p-2 max-h-full w-full'>
     <div
-      bind:clientWidth={workareaWidth}
+      bind:clientWidth={$workareaWidth}
       class='workarea-bg w-full max-w-md mx-auto'
       class:opacity-0={!workareaReady}
       class:opacity-100={workareaReady}
     >
       <div
         class='h-full workarea grid'
-        style={`--workarea-size:${workareaSize}`}
+        style={`--workarea-size:${$workareaSize}`}
       >
-        {#each new Array(workareaSize ** 2) as _idx}
-          <Cell />
+        {#each new Array($workareaSize ** 2) as _, idx}
+          <Cell index={idx} />
         {/each}
       </div>
     </div>
