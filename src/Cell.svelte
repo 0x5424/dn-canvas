@@ -1,14 +1,17 @@
 <script lang=ts>
-  import { cursorIndex, cameraX, workareaSize } from './stores/canvas'
+  import { cursorIndex, cameraX, cameraY, workareaSize, canvasWidth } from './stores/canvas'
 
   export let index: number
 
-  // canvas-related calcs have a start "index" of 1 (eg. 1x1 canvas)
-  $: col = (1 + index % ($workareaSize)) + $cameraX
-  $: row = Math.floor(1 + index / $workareaSize)
+  // x,y are reserved terms for cursor. 0-indexed
+  $: x = (index % $workareaSize) + $cameraX
+  $: y = Math.floor(index / $workareaSize) + $cameraY
 
-  // lastly, the "effective" position of our cursor is offset by camera
-  $: effectivePosition = index + $cameraX
+  // col, row are reserved terms for canvas. these are 1-indexed
+  $: col = 1 + x
+  $: row = 1 + y
+
+  $: effectivePosition = (y * $canvasWidth) + x
 </script>
 
 <button
@@ -16,6 +19,7 @@
   class:current-position={$cursorIndex === effectivePosition}
   class:bg-rose-600={col === 20}
   class:bg-indigo-600={row === 7}
+  data-xd={index}
 >
   <span class=sr-only>Click to select cell {row}, {col}</span>
 </button>

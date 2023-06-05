@@ -61,3 +61,15 @@ export const cameraX = derived([canvasWidth, cursorX, workareaSize], ([$canvasWi
   // else, stay "sticky" on the last col
   return maxX
 })
+
+export const cameraY = derived([canvasWidth, cursorY, workareaSize], ([$canvasWidth, $cursorY, $workareaSize]) => {
+  if (!$cursorY) return 0
+
+  const cursorOffset = Math.round($workareaSize / 2)
+  if ($cursorY < cursorOffset) return 0
+
+  const maxY = $canvasWidth - $workareaSize
+  if ($cursorY < maxY + cursorOffset) return $cursorY - cursorOffset
+
+  return maxY
+})
