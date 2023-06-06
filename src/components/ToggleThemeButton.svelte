@@ -21,16 +21,16 @@
 
 
 <button class='font-thin mx-auto' on:click={onClick}>
-    {#if hideToggleButton}
-      <h6 class='opacity-0 hover:opacity-100 font-mono'>hi there!</h6>
-    {:else}
-      <h1
-        class='text-3xl uppercase'
-        class:opacity-0={beginFadeout}
-      >
-        draw-n
-      </h1>
-    {/if}
+  {#if hideToggleButton}
+    <h6 class='opacity-0 hover:opacity-100 font-mono'>hi there!</h6>
+  {:else}
+    <h1
+      class='text-2xl uppercase'
+      class:opacity-0={beginFadeout}
+    >
+      draw-n
+    </h1>
+  {/if}
 </button>
 
 <style>

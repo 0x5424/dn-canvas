@@ -15,7 +15,21 @@
   <Settings />
 </dialog>
 <div class='h-full flex flex-col justify-between py-1 px-2'>
-  <section class='w-full flex flex-col z-10'>
+  <section class='w-full flex flex-col z-10 relative'>
+    <div class='absolute top-full'>
+      <!-- this will also be where "ink level" is -->
+
+      <menu class='text-right'>
+        <li>
+          <button class='py-1 px-3 control-button'>undo</button>
+        </li>
+
+        <li>
+          <button class='py-1 px-3 control-button'>redo</button>
+        </li>
+      </menu>
+    </div>
+
     <menu class='flex justify-between'>
       <li class='my-auto'>
         <button
@@ -56,103 +70,84 @@
         >
           {xformModesOpen ? '_' : '+'}
         </button>
+
+        {#if xformModesOpen}
+          <div class='absolute top-full right-0 bg-bg shadow-fg shadow-flat'>
+            <menu class='p-2 gap-2 flex flex-col text-right' transition:slide={{ duration: 150 }}>
+              <li>
+                <button class='py-1 px-3 control-button'>crv</button>
+              </li>
+
+              <li>
+                <button class='py-1 px-3 control-button'>icrv</button>
+              </li>
+
+              <li>
+                <button class='py-1 px-3 control-button'>noop</button>
+              </li>
+
+              <li>
+                <button class='py-1 px-3 control-button'>noopi</button>
+              </li>
+
+              <li>
+                <button class='py-1 px-3 control-button'>axis</button>
+              </li>
+            </menu>
+          </div>
+        {/if}
       </li>
     </menu>
-
-    <div class='flex justify-between'>
-      <div>
-        <!-- this will also be where "ink level" is -->
-
-        <menu class='text-right' transition:slide={{ duration: 150 }}>
-          <li>
-            <button class='py-1 px-3 control-button'>undo</button>
-          </li>
-
-          <li>
-            <button class='py-1 px-3 control-button'>redo</button>
-          </li>
-        </menu>
-      </div>
-
-      <div>
-        {#if xformModesOpen}
-          <menu class='text-right' transition:slide={{ duration: 150 }}>
-            <li>
-              <button class='py-1 px-3 control-button'>crv</button>
-            </li>
-
-            <li>
-              <button class='py-1 px-3 control-button'>icrv</button>
-            </li>
-
-            <li>
-              <button class='py-1 px-3 control-button'>noop</button>
-            </li>
-
-            <li>
-              <button class='py-1 px-3 control-button'>noopi</button>
-            </li>
-
-            <li>
-              <button class='py-1 px-3 control-button'>axis</button>
-            </li>
-          </menu>
-        {/if}
-      </div>
-    </div>
   </section>
 
-  <section class='w-full z-10'>
-    <div class='flex justify-between items-end'>
-      <div>
-        {#if colorsOpen}
-          <menu class='grid grid-cols-2' transition:slide={{ duration: 150 }}>
-            <!-- N colors... 16 for initial draft -->
-            {#each [...new Array(16)].map(() => 'rgb') as color}
-              <li>
-                <button class='py-1 px-3 control-button'>{color}</button>
-              </li>
-            {/each}
-          </menu>
-        {/if}
-      </div>
-
-      <div>
-        {#if drawModesOpen}
-          <menu class='text-right' transition:slide={{ duration: 150 }}>
-            <li>
-              <button class='py-1 px-3 control-button'>Pattern</button>
-            </li>
-
-            <li>
-              <button class='py-1 px-3 control-button'>Line</button>
-            </li>
-          </menu>
-        {/if}
-      </div>
-    </div>
-
+  <section class='w-full z-10 relative'>
     <menu class='flex justify-between'>
-      <li class=mt-auto>
+      <li>
         <button
           class='py-1 px-3 control-button'
           on:click={() => colorsOpen = !colorsOpen}
         >
           {colorsOpen ? '_' : '+'}
         </button>
+        {#if colorsOpen}
+          <div class='absolute bottom-full bg-bg shadow-fg shadow-flat'>
+            <menu class='p-2 gap-2 grid grid-cols-2' transition:slide={{ duration: 150 }}>
+              <!-- N colors... 16 for initial draft -->
+              {#each [...new Array(16)].map(() => 'rgb') as color}
+                <li>
+                  <button class='py-1 px-3 control-button'>{color}</button>
+                </li>
+              {/each}
+            </menu>
+          </div>
+        {/if}
       </li>
 
-      <li class=mt-auto>
+      <!-- <li class='mt-auto -mb-1'> -->
+      <li class='-mb-1'>
         <ToggleThemeButton />
       </li>
 
-      <li class=mt-auto>
+      <li>
         <button
           class='py-1 px-3 control-button'
           on:click={() => drawModesOpen = !drawModesOpen}
         >
           {drawModesOpen ? '_' : '+'}
         </button>
+        {#if drawModesOpen}
+          <div class='absolute bottom-full right-0 bg-bg shadow-fg shadow-flat'>
+            <menu class='flex flex-col p-2 gap-2 text-right' transition:slide={{ duration: 150 }}>
+              <li>
+                <button class='py-1 px-3 control-button'>Pattern</button>
+              </li>
+
+              <li>
+                <button class='py-1 px-3 control-button'>Line</button>
+              </li>
+            </menu>
+          </div>
+        {/if}
       </li>
     </menu>
   </section>
